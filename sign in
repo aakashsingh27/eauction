@@ -1,0 +1,108 @@
+<?php include_once "header.php";?>
+<?php include_once 'db_connect.php';  ?>
+<style>
+  textarea{
+    resize: none;
+  }
+  </style>
+  <?php 
+
+
+  
+  if(isset($_POST['submit']))
+  {
+   // collect value of input field
+    
+     $Bidder_Name =$_POST['Bidder_Name'];
+     $Bidder_Email =$_POST['Bidder_Email'];
+     $Bidder_Password =$_POST['Bidder_Password'];
+     $Confirm_Password = $_POST['Confirm_Password'];
+     
+
+     
+  
+     $sql="insert into newbidder_login(Bidder_Name,Bidder_Email,Bidder_Password,Confirm_Password) 
+     values('$Bidder_Name','$Bidder_Email','$Bidder_Password','$Confirm_Password')";
+    $result=mysqli_query($conn,$sql);
+    
+    // print_r($sql);
+    if($result){
+      
+       echo "<script>
+         window.location.href='bidlogin.php'
+       </script>";
+     
+      
+     
+     
+    } else { 
+      echo "<script>alert('Try Again')
+         window.location.href='newbidderlogin.php'
+       </script>";
+    }
+  
+}
+
+?>
+<div class="container">
+
+       <div class="section-title  text-center">
+      <span><strong><h4>Sign in for new bidder </h4></strong></span><br><br>
+      </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6 bg-light p-5">
+      <form action="" method="POST">
+
+
+      <div class="mb-3 row">
+      <label for="inputEmail4" class="col-sm-4 col-form-label">Name</label>
+      <div class="col-sm-8">
+      <input type="text" class="form-control" id="Bidder_Name" name="Bidder_Name" placeholder="Name">
+      </div>
+      </div>
+
+      
+
+      <div class="mb-3 row">
+      <label for="inputEmail4" class="col-sm-4 col-form-label">Email</label>
+      <div class="col-sm-8">
+      <input type="email" class="form-control" id="Bidder_Email" name="Bidder_Email" placeholder="Email">
+      </div>
+      </div>
+
+
+      <div class="mb-3 row">
+      <label for="inputPassword4" class="col-sm-4 col-form-label">Password</label>
+      <div class="col-sm-8">
+      <input type="password" class="form-control" id="Bidder_Password" name="Bidder_Password" placeholder="Password">
+      </div>
+      </div>
+
+      <div class="mb-3 row">
+      <label for="inputAddress" class="col-sm-4 col-form-label">Confirm password</label>
+      <div class="col-sm-8">
+      <input type="password" class="form-control" id="Confirm_Password" name="Confirm_Password" placeholder="Confirm Password">
+      </div>
+      </div>
+
+
+      
+
+
+      
+
+
+     
+
+     
+
+     
+
+        <div class="my-3">
+        <button type="submit" name="submit" class="btn btn-primary">Save</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
